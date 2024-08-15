@@ -1,0 +1,29 @@
+kind: pipeline
+name: build
+
+steps:
+- name: docker
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: josemarbm23/ephemeral-environments 
+    #auto_tag: true
+    tags:
+    - latest
+    - ${DRONE_COMMIT_SHA:0:8}
+    ssh-agent-key:
+      from_secret: private_key
+
+# trigger:
+#   branch:
+#   - main    
+#   event:
+#   - push  
+
+#   when:
+#     branch:
+#     - main  
