@@ -13,7 +13,7 @@ services:
       - .env
   drone-agent:
     container_name: drone-runner
-    image: drone/drone-runner-docker:1
+    image: drone/drone-runner-docker:latest
     command: agent
     restart: always
     ports:
